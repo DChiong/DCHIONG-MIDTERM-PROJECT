@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>midterm</h1>
+    <form action="/insertField/" method="POST">
+        {% csrf_token %}
+        <label for="title">Title: </label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">description: </label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="due_date">Due Date: </label><br>
+        <input type="date" id="due_date" name="due_date"><br>
+        <label for="status">Status: </label><br>
+        <input type="text" id="status" name="status"><br>
+        <input type="submit" value="submit">
+    </form>
+
+    <h1>FIELDS</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Action</th> 
+        </tr>
+        {% for field in fields %}
+        <tr>
+            <td>{{ field.title }}</td>
+            <td>{{ field.description }}</td>
+            <td>{{ field.due_date }}</td>
+            <td>{{ field.status }}</td>
+            <td>
+                <a href="update_field/{{ field.id }}">Update</a>
+                <a href="deleteField/{{ field.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+ 
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a;
+}
+
+</style>
+
+</html>
